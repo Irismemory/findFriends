@@ -1,0 +1,24 @@
+﻿<Application
+    x:Class="findFriends.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:MyResources="clr-namespace:findFriends.MyResources"
+    xmlns:UserControls="clr-namespace:findFriends.UserControls"
+    >
+
+    <!--应用程序资源-->
+    <Application.Resources>
+        <local:LocalizedStrings xmlns:local="clr-namespace:findFriends" x:Key="LocalizedStrings"/>
+        <MyResources:MyResouces x:Key="MyResouces"/>
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--处理应用程序的生存期事件所需的对象-->
+        <shell:PhoneApplicationService
+            Launching="Application_Launching" Closing="Application_Closing"
+            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
+    </Application.ApplicationLifetimeObjects>
+
+</Application>
