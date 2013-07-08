@@ -6,37 +6,48 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar Mode="Default" Opacity="0.5" IsMenuEnabled="True" IsVisible="True">
+            <shell:ApplicationBarIconButton Click="ApplicationBarIconButton_Click_1" IconUri="/Assets/Appbar/Send-AppBarIcon.png" Text="登陆" />
+            <shell:ApplicationBarIconButton Click="ApplicationBarIconButton_Click_2" IconUri="/Assets/Appbar/New-AppBarIcon.png" Text="新建账号" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
 
     <!--LayoutRoot 包含根网格，其他所有页面内容都位于根网格中-->
-    <Grid x:Name="LayoutRoot" Background="#FFFFFEFE">
-
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/MainPage2.jpg" />
+        </Grid.Background>
+        <StackPanel Grid.Row="0" Margin="12,45,0,28">
             <TextBlock Text="应用名称" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF272727"/>
 
             <TextBlock Text="登录" Margin="33,-7,147,0" Style="{StaticResource PhoneTextTitle1Style}" VerticalAlignment="Bottom" Foreground="#FF404040"/>
         </StackPanel>
 
-        <Grid Name="ContentPanel" Margin="0,150,0,0" Background="White">
+        <Grid Name="ContentPanel" Margin="0,150,0,0">
             <TextBlock Name="userNameErrorMessage" Text="用户名不得为空"  Margin="173,137,186,458" Foreground="Red" FontSize="17" />
             <TextBlock Name="userNameWatermark" Text="用户名" TextWrapping="Wrap" Margin="80,177,307,414" Foreground="Black"/>
-            <TextBox Name="userNameTextBox" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" VerticalAlignment="Top" Width="366" Margin="53,155,0,0" BorderBrush="#BFACACAC" Background="#BFEAEAEA" SelectionBackground="#FFD3736A"/>
+            <TextBox Name="userNameTextBox" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" VerticalAlignment="Top" Width="366" Margin="53,155,0,0" BorderBrush="#00ACACAC" Background="#7FBFBFBF"/>
 
 
             <TextBlock x:Name="passwordErrorMessage" Text="密码不得为空"  Margin="184,221,194,374" Foreground="Red" FontSize="17" />
             <TextBlock Name="passwordWatermark" Text="密码" TextWrapping="Wrap" Margin="80,259,307,331" Foreground="Black" />
-            <PasswordBox Name="passwordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,237,0,0" Width="366" BorderBrush="#BFACACAC" Background="#BFEAEAEA" SelectionBackground="#FFD3736A"/>
+            <PasswordBox Name="passwordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,237,0,0" Width="366" BorderBrush="#00ACACAC" Background="#7FC3C3C3" SelectionBackground="White"/>
 
-            <CheckBox Name="rememberPasswordCheckbox" Content="记住密码" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,314,0,0" Height="82" Foreground="#FF2E2E2E" BorderBrush="#FF939393" IsChecked="True" Background="#FFCBCBCB"/>
+            <CheckBox Name="rememberPasswordCheckbox" Content="记住密码" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,314,0,0" Height="82" Foreground="#FF2E2E2E" BorderBrush="Transparent" IsChecked="True" Background="#CC979797"/>
 
-            <Button Name="loginButton" Content="登陆" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,400,0,0" Width="182" Height="87" Background="#FF5833FF" Click="loginButton_Click"/>
-            <Button Name="registerButton" Content="注册" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="240,400,0,0" Width="179" Height="87" RenderTransformOrigin="1.792,0.598" Background="#FF5833FF"/>
+            <!--Button Name="loginButton" Content="登陆" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,400,0,0" Width="182" Height="87" Background="#B2FFFFFF" Click="loginButton_Click" Foreground="Black" BorderBrush="Transparent"/-->
+            <!--Button Name="registerButton" Content="注册" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="240,400,0,0" Width="179" Height="87" RenderTransformOrigin="1.792,0.598" Background="#B2FFFFFF" BorderBrush="Transparent" Foreground="Black" Click="registerButton_Click"/-->
 
         </Grid>
     </Grid>
+    
 </phone:PhoneApplicationPage>

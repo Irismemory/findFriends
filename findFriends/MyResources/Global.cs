@@ -13,7 +13,7 @@ namespace findFriends.MyResources
 {
     class Global
     {
-        public static HelpEvent currentlyViewingEvent = null;
+        public static HelpEventData currentlyViewingEvent = null;
         public static void switchPage(PhoneApplicationPage page, string pageName)
         {
             page.NavigationService.Navigate(new Uri(pageName, UriKind.Relative));

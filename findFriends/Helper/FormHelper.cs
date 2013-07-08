@@ -83,5 +83,16 @@ namespace findFriends.Helper
                 }
             };
         }
+
+        public static void bindBoxWithFunctionViaEnterKey(TextBox box, Action myFunc)
+        {
+            box.KeyDown += delegate(object sender, KeyEventArgs e)
+            {
+                if (e.Key == Key.Enter)
+                {
+                    myFunc();
+                }
+            };
+        }
     }
 }

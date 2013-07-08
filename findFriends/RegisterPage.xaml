@@ -11,15 +11,23 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="True">
 
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar Mode="Default" Opacity="0.5" IsMenuEnabled="True" IsVisible="True">
+            <shell:ApplicationBarIconButton Click="ApplicationBarIconButton_Click_1" IconUri="/Assets/Appbar/Send-AppBarIcon.png" Text="提交" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    
     <!--LayoutRoot 包含根网格，其他所有页面内容都位于根网格中-->
-    <Grid x:Name="LayoutRoot" Background="White">
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/MainPage2.jpg" />
+        </Grid.Background>
         <!--TitlePanel 包含应用程序的名称和页标题-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="应用名称" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF3E3E3E"/>
@@ -36,7 +44,7 @@
 
                 <Grid Height="70">
                     <TextBlock Name="nickNameWM" Foreground="Black" Margin="22,21,41,22">请输入昵称</TextBlock>
-                    <TextBox Name="nickNameTB" Margin="0,0,10,0" BorderBrush="#BFACACAC" Background="#BFEAEAEA" SelectionBackground="#FFD3736A"/>
+                    <TextBox Name="nickNameTB" Margin="0,0,10,0" BorderBrush="#00ACACAC" Background="#7FBFBFBF"/>
                 </Grid>
                 <Grid>
                     <TextBlock Text="邮箱" Foreground="#FF2C2C2C" Margin="0,0,284,0"></TextBlock>
@@ -44,7 +52,7 @@
                 </Grid>
                 <Grid Height="70">
                     <TextBlock Name="emailWM" Foreground="Black" Text="例如：myname@example.com" Margin="22,21,41,22"></TextBlock>
-                    <TextBox Name="emailTB" Margin="0,0,10,0" BorderBrush="#BFACACAC" Background="#BFEAEAEA" SelectionBackground="#FFD3736A"/>
+                    <TextBox Name="emailTB" Margin="0,0,10,0" BorderBrush="#00ACACAC" Background="#7FBFBFBF"/>
                 </Grid>
                 <Grid>
                     <TextBlock Text="密码" Foreground="#FF2C2C2C" Margin="0,0,284,0"></TextBlock>
@@ -52,7 +60,7 @@
                 </Grid>
                 <Grid Height="70">
                     <TextBlock Name="passwordWM" Foreground="Black" Text="长度应为6-14字符之间" Margin="22,21,41,22"></TextBlock>
-                    <PasswordBox Name="passwordTB" Margin="0,0,10,0" BorderBrush="#BFACACAC" Background="#BFEAEAEA" SelectionBackground="#FFD3736A"/>
+                    <PasswordBox Name="passwordTB" Margin="0,0,10,0" BorderBrush="#00ACACAC" Background="#7FBFBFBF"/>
                 </Grid>
                 <Grid>
                     <TextBlock Text="重输密码" Foreground="#FF2C2C2C" Margin="0,0,284,0"></TextBlock>
@@ -60,11 +68,9 @@
                 </Grid>
                 <Grid Height="70">
                     <TextBlock Name="rePasswordWM" Foreground="Black" Text="与密码同样" Margin="22,21,41,22"></TextBlock>
-                    <PasswordBox Name="rePasswordTB" Margin="0,0,10,0" BorderBrush="#BFACACAC" Background="#BFEAEAEA" SelectionBackground="#FFD3736A"/>
+                    <PasswordBox Name="rePasswordTB" Margin="0,0,10,0" BorderBrush="#00ACACAC" Background="#7FBFBFBF"/>
                 </Grid>
-                <Grid Height="127">
-                    <Button Name="sumitButton" Content="提交" Margin="0,19,10,0" BorderBrush="#00A6A6A6" Foreground="White" Click="sumitButton_Click" Background="#FF5833FF"></Button>
-                </Grid>
+                
             </StackPanel>
         </Grid>
     </Grid>

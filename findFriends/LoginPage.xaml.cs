@@ -34,8 +34,8 @@ namespace findFriends
             FormHelper.combineBoxWithWatermark(passwordBox, passwordWatermark);
             FormHelper.chainBoxesByEnterKey(userNameTextBox, passwordBox);
 
-            registerButton.Click += registerButton_Click;
-            loginButton.Click += loginButton_Click;
+            //registerButton.Click += registerButton_Click;
+            //loginButton.Click += loginButton_Click;
 
             userNameErrorMessage.Text = "";
             passwordErrorMessage.Text = "";
@@ -65,6 +65,7 @@ namespace findFriends
             };
 
             _appSetting = IsolatedStorageSettings.ApplicationSettings;
+
             if (_appSetting.Contains(_userNameKey))
             {
                 userNameTextBox.Text = (String)_appSetting[_userNameKey];
@@ -90,7 +91,6 @@ namespace findFriends
 
         private void submit()
         {
-            Global.switchPage(this, "/MainPage.xaml");
 
 
             String UserName = userNameTextBox.Text;
@@ -198,11 +198,15 @@ namespace findFriends
             Global.switchPage(this, "/MainPage.xaml");
         }
 
-        private void loginButton_Click(object sender, RoutedEventArgs e)
-        {
-            //Global.switchPage(this, "/MainPage.xaml");
-            submit();
 
+        private void ApplicationBarIconButton_Click_1(object sender, EventArgs e)
+        {
+            submit();
+        }
+
+        private void ApplicationBarIconButton_Click_2(object sender, EventArgs e)
+        {
+            Global.switchPage(this, "/RegisterPage.xaml");
         }
 
 

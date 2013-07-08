@@ -7,11 +7,38 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using findFriends.Resources;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
+
+using findFriends.MyResources;
+
+using findFriends.Bus;
+using findFriends.Model;
+
 
 namespace findFriends
 {
     public partial class App : Application
     {
+        
+        private static FriendBus viewFriends;
+        public static FriendBus ViewFriends
+        {
+            get { return viewFriends; }
+        }
+        
+        private static HelpEventBus viewHelpEvents;
+        public static HelpEventBus ViewHelpEvents
+        {
+            get { return viewHelpEvents; }
+        }
+        
         /// <summary>
         ///提供对电话应用程序的根框架的轻松访问。
         /// </summary>
@@ -55,7 +82,36 @@ namespace findFriends
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
+            string DBConnectionString = "Data Source=isostore:/database.sdf";
+            string DBConnectionString2 = "Data Source = 'appdata:/database.sdf'; File Mode = read only;";
+            string RssiDBConnectionString = "Data Source=isostore:/rssibase.sdf";
+
+            using (ToFriendData db = new ToFriendData(DBConnectionString))
+            {
+
+                if (db.DatabaseExists() == false)
+                {
+                    //数据库不存在时创建本地数据库.
+                    db.CreateDatabase();
+                    System.Diagnostics.Debug.WriteLine(DateTime.Now.ToLongTimeString() + "Friend数据库创建完成");
+                    //准备默认数据.
+                     db.Items.InsertOnSubmit(new FriendData {Nickname="Test", Email="test@test.com"});
+
+
+                    // 保存提交数据库.
+                    db.SubmitChanges();
+                }
+            }
+
+            using (ToHelpEvent db2 = new ToHelpEvent(DBConnectionString))
+            {
+            }
+
+
         }
+
+        
+
 
         // 应用程序启动(例如，从“开始”菜单启动)时执行的代码
         // 此代码在重新激活应用程序时不执行

@@ -177,10 +177,9 @@ namespace findFriends
             this.NavigationService.GoBack();
         }
 
-        private void sumitButton_Click(object sender, RoutedEventArgs e)
+        private void ApplicationBarIconButton_Click_1(object sender, EventArgs e)
         {
             submit();
-
         }
     }
 }

@@ -48,6 +48,11 @@ namespace findFriends
         private IsolatedStorageSettings setting = IsolatedStorageSettings.ApplicationSettings;
 
         /// <summary>
+        /// ApplicationBar新建按钮
+        /// </summary>
+        private ApplicationBarIconButton newEventButton = null;
+
+        /// <summary>
         /// ApplicationBar设置按钮
         /// </summary>
         private ApplicationBarIconButton publishButton = null;
@@ -213,9 +218,17 @@ namespace findFriends
             ApplicationBar.IsVisible = true;
             ApplicationBar.Opacity = 0.7;
             ApplicationBar.IsMenuEnabled = true;
-            ApplicationBar.BackgroundColor = System.Windows.Media.Colors.Blue;
+            ApplicationBar.BackgroundColor = System.Windows.Media.Colors.Black;
 
             // 创建ApplicationBar的Buttons
+
+
+            newEventButton = 
+                new ApplicationBarIconButton(new Uri("Assets/AppBar/New-AppBarIcon.png", UriKind.Relative));
+            newEventButton.Text = "新建";
+            newEventButton.Click += newEventButton_Click;
+            ApplicationBar.Buttons.Add(newEventButton);
+
             publishButton =
                 new ApplicationBarIconButton(new Uri("/Assets/AppBar/Send-AppBarIcon.png", UriKind.Relative));
             publishButton.Text = "发布";
@@ -238,6 +251,11 @@ namespace findFriends
                 new ApplicationBarMenuItem("切换登陆账号");
             CancelAccount.Click += CancelAccount_Click;
             ApplicationBar.MenuItems.Add(CancelAccount);
+        }
+
+        private void newEventButton_Click(object sender, System.EventArgs e)
+        {
+            Global.switchPage(this, "/NewEventPage.xaml");
         }
 
         private void PublishButton_Click(object sender, System.EventArgs e)
@@ -386,7 +404,7 @@ namespace findFriends
     }
 
     #region 朋友和事件的测试数据
-    public class HelpEventListBoxCollection : ObservableCollection<HelpEvent>
+    public class HelpEventListBoxCollection : ObservableCollection<HelpEventData>
     {
         public HelpEventListBoxCollection()
         {
@@ -398,14 +416,15 @@ namespace findFriends
     {
         public StaticHelpEventListBoxCollection()
         {
-            Add(new HelpEvent(0, "没带纸", "这是一个较短的描述", "康妍", DateTime.Now, 60, 60, false));
-            Add(new HelpEvent(1, "需要搭便车", "这是一个较长的描述啦啦啦啦啦啦啦啦啦啦啦啦啦", "范家琦", DateTime.Now, 60, 60, true));
-            Add(new HelpEvent(2, "猫咪在树上", "这是一个更加长的描述啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦", "杨含泊", DateTime.Now, 60, 60, false));
-            Add(new HelpEvent(3, "猫咪在树上", "这是另外一个较长的描述啦啦啦啦啦啦啦啦啦啦啦啦啦", "杨含泊", DateTime.Now, 60, 60, true));
+            Add(new HelpEventData(0, "没带纸", "", "康妍", DateTime.Now, 60, 60, false));
+            Add(new HelpEventData(1, "需要搭便车", "上一个事件没有描述。", "范家琦", DateTime.Now, 60, 60, true));
+            Add(new HelpEventData(3, "猫咪在树上", "上一个事件的描述比较短。这是一个比较长的描述。啦啦啦啦", "杨含泊", DateTime.Now, 60, 60, true));
+            Add(new HelpEventData(2, "猫咪在树上", "这是一个更加长的描述啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦", "杨含泊", DateTime.Now, 60, 60, false));
+            
         }
     }
 
-    public class FriendListBoxCollection : ObservableCollection<Friend>
+    public class FriendListBoxCollection : ObservableCollection<FriendData>
     {
         public FriendListBoxCollection()
         {
@@ -416,13 +435,13 @@ namespace findFriends
     {
         public StaticFriendListBoxCollection()
         {
-            Add(new Friend("康妍", "kangyan@email.com"));
-            Add(new Friend("范家琦", "fanjiaqi@email.com"));
-            Add(new Friend("杨含泊", "yanghanbo@email.com"));
-            Add(new Friend("杨含泊", "yanghanbo@email.com"));
+            Add(new FriendData("康妍", "kangyan@email.com"));
+            Add(new FriendData("范家琦", "fanjiaqi@email.com"));
+            Add(new FriendData("杨含泊", "yanghanbo@email.com"));
+            Add(new FriendData("杨含泊", "yanghanbo@email.com"));
 
-            Add(new Friend("杨含泊", "yanghanbo@email.com"));
-            Add(new Friend("杨含泊", "yanghanbo@email.com"));
+            Add(new FriendData("杨含泊", "yanghanbo@email.com"));
+            Add(new FriendData("杨含泊", "yanghanbo@email.com"));
         }
     }
 #endregion 

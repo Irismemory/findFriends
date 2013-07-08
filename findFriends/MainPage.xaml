@@ -19,19 +19,23 @@
           
          
     <!--LayoutRoot 是包含所有页面内容的根网格-->
-    <Grid x:Name="LayoutRoot" Background="White">
-
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/MainPage2.jpg"
+                        Stretch="UniformToFill" />
+        </Grid.Background>
         <Grid.Resources>
             <my:StaticHelpEventListBoxCollection x:Key="events" />
             <my:StaticFriendListBoxCollection x:Key="friends" />
         </Grid.Resources>
-        <controls:Pivot HorizontalAlignment="Left" Height="768" Title="" VerticalAlignment="Top" Width="480" Margin="10,0,-10,0"
+        
+        <controls:Pivot HorizontalAlignment="Left" Height="768" Title="" VerticalAlignment="Top" Width="480"
                        Foreground="Black" >
             <controls:PivotItem CacheMode="{x:Null}" Header="地图"  Margin="12,28,65,0" RenderTransformOrigin="0.5,0.5">
                 <controls:PivotItem.RenderTransform>
                     <CompositeTransform ScaleX="-1"/>
                 </controls:PivotItem.RenderTransform>
-                <Grid Margin="0,0,0,0" Height="574" Width="410">
+                <Grid Margin="0,0,0,30" Height="574" Width="410" VerticalAlignment="Bottom">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="275*"/>
                         <RowDefinition Height="299*"/>
@@ -43,27 +47,30 @@
                     </maps:Map>
                 </Grid>
             </controls:PivotItem>
-            <phone:PivotItem Header="事件" Margin="12,28,12,2">
+            <phone:PivotItem Header="事件" Margin="12,28,12,67">
 
                 <Grid>
-
+                    <Canvas>
+                       
+                    </Canvas>
                     <ListBox Name="eventListBox" ItemsSource="{StaticResource events}" Foreground="#FF3C2020">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid Height="154" Width="432">
+                                <Grid Height="174" Width="432">
                                     <Grid Margin="0,0,334,0">
 
                                     </Grid>
                                     <Canvas>
-                                        <!--Rectangle Name="itemBackground" Height="3" Stroke="#00000000" Width="422" Fill="Black" Canvas.Top="141" Canvas.Left="2" RadiusX="300" RadiusY="300"/-->
+                                        <Rectangle Height="164" Width="456" Fill="#60B2B2B2"></Rectangle>
+                                        
                                     </Canvas>
-                                    <Grid Margin="103,0,0,0" Height="134" VerticalAlignment="Top">
-                                        <TextBlock Text="{Binding Title}" Margin="0,0,73,84" FontWeight="Bold" FontSize="32" Foreground="#FF21203C"/>
-                                        <TextBlock Text="{Binding IsSolvedText}" Margin="256,10,0,96" Foreground="#FFDA0000"/>
-                                        <TextBlock Text="{Binding ShortDescription}" Margin="0,43,10,26" Foreground="#FF928EA0" TextWrapping="Wrap"/>
-                                        <TextBlock Text="发起人:" Margin="0,113,259,0" Foreground="#FF24203C" FontSize="13"/>
-                                        <TextBlock Text="{Binding User}" Margin="47,113,62,0" Foreground="#FF25203C" FontSize="13"/>
-                                        <TextBlock Text="{Binding TimeText}" Margin="272,113,0,0" Foreground="#FF21203C" FontSize="13"/>
+                                    <Grid Margin="103,0,0,0" Height="141" VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding Title}" Margin="0,0,73,88" FontSize="32" Foreground="Black" Height="43" VerticalAlignment="Bottom"/>
+                                        <TextBlock Text="{Binding IsSolvedText}" Margin="256,21,0,81" Foreground="#FFCB4747"/>
+                                        <TextBlock Text="{Binding ShortDescription}" Margin="0,58,10,33" Foreground="#FF464646" TextWrapping="Wrap"/>
+                                        <TextBlock Text="发起人:" Margin="0,122,259,0" Foreground="Black" FontSize="13"/>
+                                        <TextBlock Text="{Binding User}" Margin="47,122,62,0" Foreground="Black" FontSize="13"/>
+                                        <TextBlock Text="{Binding TimeText}" Margin="272,122,0,0" Foreground="Black" FontSize="13"/>
                                     </Grid>
 
                                 </Grid>
@@ -75,19 +82,28 @@
             </phone:PivotItem>
             <phone:PivotItem Header="好友">
                 <Grid>
+                    <Canvas>
+                        
+                    </Canvas>
                     <ListBox Name="friendListBox" ItemsSource="{StaticResource friends}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid Height="108" Width="422">
+                                
+                                <Grid Height="88" Width="422">
+                                    <Canvas>
+                                        <Rectangle Height="78" Width="453" Fill="#56C5C5C5">
+                                            
+                                        </Rectangle>
+                                    </Canvas>
                                     <Grid Margin="0,0,336,0">
                                         <!-- For the avatar of the friend-->
                                     </Grid>
                                     <Grid Margin="91,0,0,0">
-                                        <Grid Margin="0,0,10,68">
-                                            <TextBlock Text="{Binding Nickname}" Foreground="Black" FontSize="30" FontWeight="Bold"></TextBlock>
+                                        <Grid Margin="0,0,10,48">
+                                            <TextBlock Text="{Binding Nickname}" Foreground="Black" FontSize="30" Margin="0,0,0,-13"/>
                                         </Grid>
-                                        <Grid Margin="10,40,0,0" Height="32" VerticalAlignment="Top">
-                                            <TextBlock Text="{Binding Email}" Foreground="#FFA0A0A0"></TextBlock>
+                                        <Grid Margin="0,40,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Width="331">
+                                            <TextBlock Text="{Binding Email}" Foreground="#FF636363" Margin="3,0,0,0"></TextBlock>
                                         </Grid>
                                     </Grid>
                                 </Grid>
