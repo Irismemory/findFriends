@@ -110,7 +110,10 @@ namespace findFriends
             getSettings();
 
          //   VisualStateGroup.CurrentStateChanged += VisualStateGroup_CurrentStateChanged;
+
+            eventListBox.SelectionChanged += eventListBox_SelectionChanged;
         }
+
         #endregion
 
         #region  -初始化事件-
@@ -401,6 +404,19 @@ namespace findFriends
         }
         #endregion
 
+        #region 页面的一些事件处理器
+
+        void eventListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //如果选择了一项，切换到事件详细页面
+            if (eventListBox.SelectedIndex == -1) return;
+            var item = (HelpEventData)eventListBox.SelectedItem;
+            Global.currentlyViewingEvent = item;
+            eventListBox.SelectedIndex = -1;
+            Global.switchPage(this, "/EventInformationPage.xaml");
+        }
+        #endregion
+
     }
 
     #region 朋友和事件的测试数据
@@ -416,11 +432,10 @@ namespace findFriends
     {
         public StaticHelpEventListBoxCollection()
         {
-            Add(new HelpEventData(0, "没带纸", "", "康妍", DateTime.Now, 60, 60, false));
-            Add(new HelpEventData(1, "需要搭便车", "上一个事件没有描述。", "范家琦", DateTime.Now, 60, 60, true));
-            Add(new HelpEventData(3, "猫咪在树上", "上一个事件的描述比较短。这是一个比较长的描述。啦啦啦啦", "杨含泊", DateTime.Now, 60, 60, true));
-            Add(new HelpEventData(2, "猫咪在树上", "这是一个更加长的描述啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦", "杨含泊", DateTime.Now, 60, 60, false));
-            
+            Add(new HelpEventData { ID = 0, Title="没带纸", LongDescription="", User="康妍", Time=DateTime.Now, Latitude=60, Longitude=60, IsSolved=true });
+            Add(new HelpEventData { ID = 0, Title = "需要搭便车", LongDescription = "前一个事件没有描述", User = "范家琦", Time = DateTime.Now, Latitude = 60, Longitude = 60, IsSolved = false });
+            Add(new HelpEventData { ID = 0, Title="猫咪在树上", LongDescription="前一个事件的描述很短。这个描述长一些啦啦啦啦啦啦啦啦啦", User="杨含泊", Time=DateTime.Now, Latitude=60, Longitude=60, IsSolved=false });
+            Add(new HelpEventData { ID = 0, Title="猫咪在树上", LongDescription="这是一个更加长的描述啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦", User="杨含泊", Time=DateTime.Now, Latitude=60, Longitude=60, IsSolved=true });
         }
     }
 
@@ -435,13 +450,13 @@ namespace findFriends
     {
         public StaticFriendListBoxCollection()
         {
-            Add(new FriendData("康妍", "kangyan@email.com"));
-            Add(new FriendData("范家琦", "fanjiaqi@email.com"));
-            Add(new FriendData("杨含泊", "yanghanbo@email.com"));
-            Add(new FriendData("杨含泊", "yanghanbo@email.com"));
+            Add(new FriendData{Nickname="康妍", Email = "kangyan@email.com"});
+            Add(new FriendData { Nickname = "范家琦", Email = "fanjiaqi@email.com" });
+            Add(new FriendData { Nickname = "杨含泊", Email = "yanghanbo@email.com" });
+            Add(new FriendData { Nickname = "杨含泊", Email = "yanghanbo@email.com" });
 
-            Add(new FriendData("杨含泊", "yanghanbo@email.com"));
-            Add(new FriendData("杨含泊", "yanghanbo@email.com"));
+            Add(new FriendData { Nickname = "杨含泊", Email = "yanghanbo@email.com" });
+            Add(new FriendData { Nickname = "杨含泊", Email = "yanghanbo@email.com" });
         }
     }
 #endregion 

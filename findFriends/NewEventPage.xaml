@@ -32,18 +32,46 @@
         <!--TitlePanel 包含应用程序的名称和页标题-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <Grid>
-                <TextBlock Text="事件标题" Foreground="Black"></TextBlock>
+                <TextBlock 
+                    Text="事件标题" 
+                    Foreground="Black"></TextBlock>
+                <TextBlock
+                    Name="titleError"
+                    Text="错误" 
+                    Foreground="Red" 
+                    Margin="97,0,0,0"></TextBlock>
             </Grid>
             <Grid>
-                <TextBlock Name="titleWM" Foreground="Black" Margin="22,21,41,22">请输入昵称</TextBlock>
-                <TextBox Name="titleTB" Margin="0,0,10,0" BorderBrush="#00ACACAC" Background="#7F6C6C6C"/>
+                <TextBlock 
+                    Name="titleWM" 
+                    Foreground="Black" 
+                    Margin="22,21,41,22">请输入昵称</TextBlock>
+                <TextBox 
+                    Name="titleTB" 
+                    Margin="0,0,10,0" 
+                    BorderBrush="#00ACACAC" 
+                    Background="#7F6C6C6C"/>
             </Grid>
             <Grid>
-                <TextBlock Text="事件描述" Foreground="Black"></TextBlock>
+                <TextBlock 
+                    Text="事件描述" 
+                    Foreground="Black"></TextBlock>
+                <TextBlock
+                    Name="descriptionError"
+                    Text="错误" 
+                    Foreground="Red" 
+                    Margin="97,0,0,0"></TextBlock>
             </Grid>
             <Grid Height="301">
-                <TextBlock Name="descriptionWM" Foreground="Black" Margin="22,21,41,22">请输入事件详细描述</TextBlock>
-                <TextBox Name="descriptionTB" Margin="0,0,10,0" BorderBrush="#00ACACAC" Background="#7F6C6C6C"/>
+                <TextBlock 
+                    Name="descriptionWM" 
+                    Foreground="Black" 
+                    Margin="22,21,41,22">请输入事件详细描述</TextBlock>
+                <TextBox 
+                    Name="descriptionTB" 
+                    Margin="0,0,10,0" 
+                    BorderBrush="#00ACACAC" 
+                    Background="#7F6C6C6C"/>
             </Grid>
         </StackPanel>
 

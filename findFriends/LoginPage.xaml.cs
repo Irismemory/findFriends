@@ -97,6 +97,8 @@ namespace findFriends
             String Password = passwordBox.Password;
             Boolean RememberPassword = (Boolean)rememberPasswordCheckbox.IsChecked;
 
+
+
             if (UserName == "")
             {
                 userNameTextBox.Focus();
@@ -111,8 +113,6 @@ namespace findFriends
                 return;
             }
             passwordErrorMessage.Text = "";
-
-            Boolean loginSuccessful = false;
 
 
 
@@ -150,8 +150,39 @@ namespace findFriends
 
                         Dispatcher.BeginInvoke(() => MessageBox.Show(text));
 
-                        loginSuccessful = true;
+                        #region 登陆成功后保存信息等作业
+                        if (_appSetting.Contains(_userNameKey))
+                        {
+                            _appSetting[_userNameKey] = UserName;
+                        }
+                        else
+                        {
+                            _appSetting.Add(_userNameKey, UserName);
+                        }
 
+                        if (RememberPassword)
+                        {
+                            if (_appSetting.Contains(_passwordKey))
+                            {
+                                _appSetting[_passwordKey] = Password;
+                            }
+                            else
+                            {
+                                _appSetting.Add(_passwordKey, Password);
+                            }
+                        }
+                        else
+                        {
+                            if (_appSetting.Contains(_passwordKey))
+                            {
+                                _appSetting.Remove(_passwordKey);
+                            }
+                        }
+
+                        Global.currentUser = UserName;
+                        Dispatcher.BeginInvoke(() => Global.switchPage(this, "/MainPage.xaml"));
+
+                        #endregion
 
                     }
                     catch (Exception ex)
@@ -165,37 +196,7 @@ namespace findFriends
             ), request);
 
 
-            if (!loginSuccessful) return;
-
-            if (_appSetting.Contains(_userNameKey))
-            {
-                _appSetting[_userNameKey] = UserName;
-            }
-            else
-            {
-                _appSetting.Add(_userNameKey, UserName);
-            }
-
-            if (RememberPassword)
-            {
-                if (_appSetting.Contains(_passwordKey))
-                {
-                    _appSetting[_passwordKey] = Password;
-                }
-                else
-                {
-                    _appSetting.Add(_passwordKey, Password);
-                }
-            }
-            else
-            {
-                if (_appSetting.Contains(_passwordKey))
-                {
-                    _appSetting.Remove(_passwordKey);
-                }
-            }
-
-            Global.switchPage(this, "/MainPage.xaml");
+            
         }
 
 

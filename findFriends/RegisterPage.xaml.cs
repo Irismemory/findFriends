@@ -124,9 +124,7 @@ namespace findFriends
                 return;
             }
 
-            Boolean registerSuccessful = false;
-
-            Uri uri = new Uri("http://172.16.94.177:8001/user/create/");
+            Uri uri = new Uri("http://objpy.sinaapp.com/user/create", UriKind.Absolute);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
             request.Method = "POST";
             request.BeginGetRequestStream(new AsyncCallback(a =>
@@ -139,6 +137,7 @@ namespace findFriends
                 JObject job = new JObject();
                 job.Add("name", Nickname);
                 job.Add("password", Password);
+                Dispatcher.BeginInvoke(() => MessageBox.Show(job.ToString()));
                 streamWriter.WriteLine(job.ToString());
                 streamWriter.Close();
 
@@ -157,24 +156,23 @@ namespace findFriends
                         var text = streamReader.ReadToEnd();
                         Dispatcher.BeginInvoke(() => MessageBox.Show(text));
 
-                        registerSuccessful = true;
+                        Dispatcher.BeginInvoke(() => MessageBox.Show("注册成功!"));
+
+                        Dispatcher.BeginInvoke(() => this.NavigationService.GoBack());
                     }
                     catch (Exception ex)
                     {
                         var c = ex.Message;
-                        Dispatcher.BeginInvoke(() => MessageBox.Show(c + "fsedfdsfsd"));
+                        Dispatcher.BeginInvoke(() => MessageBox.Show(c + " (Failed)"));
 
+                        Dispatcher.BeginInvoke(() => MessageBox.Show("注册失败!"));
+                        return;
                     }
                 }), httprequest);
             }
             ), request);
 
-
-            if (!registerSuccessful) return;
-
-            MessageBox.Show("注册成功!");
-
-            this.NavigationService.GoBack();
+            
         }
 
         private void ApplicationBarIconButton_Click_1(object sender, EventArgs e)

@@ -83,30 +83,50 @@ namespace findFriends
             }
 
             string DBConnectionString = "Data Source=isostore:/database.sdf";
-            string DBConnectionString2 = "Data Source = 'appdata:/database.sdf'; File Mode = read only;";
-            string RssiDBConnectionString = "Data Source=isostore:/rssibase.sdf";
+            string DBConnectionString1 = "Data Source=isostore:/database1.sdf";
 
             using (ToFriendData db = new ToFriendData(DBConnectionString))
             {
 
                 if (db.DatabaseExists() == false)
                 {
+                    Debug.WriteLine("whgiowehgwoigeh");
                     //数据库不存在时创建本地数据库.
                     db.CreateDatabase();
                     System.Diagnostics.Debug.WriteLine(DateTime.Now.ToLongTimeString() + "Friend数据库创建完成");
                     //准备默认数据.
-                     db.Items.InsertOnSubmit(new FriendData {Nickname="Test", Email="test@test.com"});
-
+                    db.Items.InsertOnSubmit(new FriendData { Nickname = "Test", Email = "test@test.com" });
 
                     // 保存提交数据库.
                     db.SubmitChanges();
                 }
+                else { Debug.WriteLineIf(db.DatabaseExists(), "Dabase exists"); }
+
             }
 
-            using (ToHelpEvent db2 = new ToHelpEvent(DBConnectionString))
+            using (ToHelpEventData db2 = new ToHelpEventData(DBConnectionString1))
             {
+                if (db2.DatabaseExists() == false)
+                {
+                    //数据库不存在时创建本地数据库.
+                    db2.CreateDatabase();
+                    System.Diagnostics.Debug.WriteLine(DateTime.Now.ToLongTimeString() + "HelpEvent数据库创建完成");
+                    //准备默认数据.
+                    db2.Items.InsertOnSubmit(new HelpEventData {ID=0, Title = "Test", LongDescription = "lalalalala" , User="Tester", Time=DateTime.Now, Latitude=60, Longitude=60, IsSolved=false});
+
+                    // 保存提交数据库.
+                    db2.SubmitChanges();
+                }
             }
 
+
+            viewFriends = new FriendBus(DBConnectionString);
+
+            viewFriends.SelectDB();
+
+            viewHelpEvents = new HelpEventBus(DBConnectionString1);
+
+            viewHelpEvents.SelectDB();
 
         }
 

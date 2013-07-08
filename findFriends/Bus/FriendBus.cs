@@ -9,8 +9,11 @@ using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Net;
 
+using System.Diagnostics;
+
 using findFriends.Model;
 using findFriends.MyResources;
+
 
 namespace findFriends.Bus
 {

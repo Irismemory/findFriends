@@ -152,7 +152,7 @@ namespace findFriends.MyResources
         {
             get
             {
-                return Latitude;
+                return latitude;
             }
             set
             {
@@ -186,7 +186,7 @@ namespace findFriends.MyResources
         {
             get 
             {
-                return IsSolved;
+                return isSolved;
             }
             set
             {
@@ -212,13 +212,14 @@ namespace findFriends.MyResources
         {
             get
             {
-                return isSolvedText;
+                if (isSolved) return "已解决";
+                else return "";
             }
         }
 
         
         public const int maxShort = 30;
-
+        /*
         public HelpEventData(int pId, String pTitle, String pLongDescription, String pUser, DateTime pTime, double pLatitude, double pLongitude, Boolean pIsSolved)
         {
             this.id = pId;
@@ -238,10 +239,7 @@ namespace findFriends.MyResources
                 {
                     isSolvedText = "未解决";
                 }
-            
-                
-            
-        }
+        }*/
 
         #region INotifyPropertyChanged Members
 

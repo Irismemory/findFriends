@@ -15,7 +15,7 @@ namespace findFriends.MyResources
     {
         
         private String nickname;
-        [Column(IsPrimaryKey = true, IsDbGenerated = true, CanBeNull = false, AutoSync = AutoSync.OnInsert)]
+        [Column(IsPrimaryKey = true, IsDbGenerated = false, CanBeNull = false, AutoSync = AutoSync.OnInsert)]
         public String Nickname
         {
             set
@@ -34,7 +34,7 @@ namespace findFriends.MyResources
         }
 
         private String email;
-        [Column(CanBeNull = false)]
+        [Column(CanBeNull = true)]
         public String Email
         {
             set
@@ -50,14 +50,6 @@ namespace findFriends.MyResources
             {
                 return email;
             }
-        }
-        
-        
-
-        public FriendData(String pNickname, String pEmail)
-        {
-            nickname = pNickname;
-            email = pEmail;
         }
 
 
